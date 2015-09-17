@@ -8,6 +8,8 @@ import shapes.Circle;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonSerializerTest {
 
@@ -27,5 +29,12 @@ public class JsonSerializerTest {
         String actual =  new String(out.toByteArray());
 
         Assert.assertEquals("{type:'circle', x=1, y=2, radius=5}", actual);
+    }
+    
+    public void test(){
+        List<String> list = new ArrayList<String>();
+        for (String s : list) {
+            
+        }
     }
 }

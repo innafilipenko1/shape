@@ -7,6 +7,5 @@ import java.io.OutputStream;
 
 public interface Serializer {
 
-
      void serialize(Shape shape, OutputStream out) throws IOException;
 }

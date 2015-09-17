@@ -8,16 +8,6 @@ public class Group implements Shape, Iterable {
 
     private List<Shape> shapes = new ArrayList<Shape>();
 
-//    @Override
-//    public void draw(OutputStream out) throws IOException {
-//        out.write("<group>".getBytes());
-//        for (Shape shape : shapes) {
-//            shape.draw(out);
-//        }
-//        out.write("</group>".getBytes());
-//
-//    }
-
     public void add(Shape shape) {
 
         if (shape == null) {
@@ -25,8 +15,6 @@ public class Group implements Shape, Iterable {
         }
 
         shapes.add(shape);
-
-
     }
 
     @Override
@@ -44,6 +32,11 @@ public class Group implements Shape, Iterable {
         @Override
         public Object next() {
             return null;
+        }
+
+        @Override
+        public void remove() {
+
         }
     }
 }

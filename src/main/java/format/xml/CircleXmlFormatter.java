@@ -6,9 +6,9 @@ import shapes.Circle;
 public class  CircleXmlFormatter implements Formatter<Circle> {
 
     @Override
-    public String format(Circle shape) {
+        public String format(Circle circle) {
         return String.format("<circle x=\"%d\" y=\"%d\" radius=\"%d\"></circle>",
-                shape.getX(), shape.getY(), shape.getRadius());
+                circle.getX(), circle.getY(), circle.getRadius());
     }
 }
 
