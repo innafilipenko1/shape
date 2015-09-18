@@ -47,4 +47,26 @@ public class XmlSerializerTest {
 
     }
 
+    @Test
+    public void verify_ThatGroupInGroupCanBeSerializedToXml() throws IOException {
+        Group group = new Group();
+        group.add(new Circle(2, 3, 8));
+        group.add(new Circle(4,7,5));
+
+        Group group2 = new Group();
+        group2.add(group);
+
+        xml.serialize(group2, out);
+        String actual =  new String(out.toByteArray());
+
+        Assert.assertEquals("<group>"+
+                "<group>" +
+                        "<circle x=\"2\" y=\"3\" radius=\"8\"></circle>" +
+                        "<circle x=\"4\" y=\"7\" radius=\"5\"></circle>" +
+                        "</group>"+
+                        "</group>",
+                actual);
+
+    }
+
 }

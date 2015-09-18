@@ -1,4 +1,4 @@
-package format.xml;
+package format.json;
 
 import format.Formatter;
 import shapes.Circle;
@@ -8,26 +8,27 @@ import shapes.Shape;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GroupXmlFormatter implements Formatter<Group> {
-
+public class GroupJsonFormatter implements Formatter<Group> {
     private Map<Class<? extends Shape>, Formatter> map = new HashMap<Class<? extends Shape>, Formatter>();
 
-    public GroupXmlFormatter() {
-        map.put(Circle.class, new CircleXmlFormatter());
+    public GroupJsonFormatter() {
+        map.put(Circle.class, new CircleJsonFormatter());
         map.put(Group.class, this);
     }
 
     @Override
     public String format(Group group) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<group>");
+        sb.append("[");
         for (Shape shape : group) {
             Formatter formatter = map.get(shape.getClass());
             sb.append(formatter.format(shape));
         }
-        sb.append("</group>");
+        sb.append("]");
 
         return sb.toString();
+
     }
+
 
 }

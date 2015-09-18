@@ -5,11 +5,10 @@ import serializer.Factory;
 import serializer.Serializer;
 import serializer.SerializerType;
 import shapes.Circle;
+import shapes.Group;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class JsonSerializerTest {
 
@@ -28,13 +27,28 @@ public class JsonSerializerTest {
         json.serialize(new Circle(1, 2, 5), out);
         String actual =  new String(out.toByteArray());
 
-        Assert.assertEquals("{type:'circle', x=1, y=2, radius=5}", actual);
+        Assert.assertEquals("{type:'circle', x:1, y:2, radius:5}", actual);
     }
-    
-    public void test(){
-        List<String> list = new ArrayList<String>();
-        for (String s : list) {
-            
-        }
+
+    @Test
+    public void verify_ThatGroupInGroupCanBeSerializedToJson() throws IOException {
+        Group group = new Group();
+        group.add(new Circle(2, 3, 8));
+        group.add(new Circle(4,7,5));
+
+        Group group2 = new Group();
+        group2.add(group);
+
+        json.serialize(group2, out);
+        String actual =  new String(out.toByteArray());
+
+        Assert.assertEquals("["+
+                        "[" +
+                        "{type:'circle', x:2, y:3, radius:8}" +
+                        "{type:'circle', x:4, y:7, radius:5}" +
+                        "]"+
+                        "]",
+                actual);
+
     }
 }
